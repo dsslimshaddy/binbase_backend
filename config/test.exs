@@ -17,3 +17,8 @@ config :binbase_backend, BinbaseBackend.Repo,
   database: "binbase_backend_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+# Configures Guardian
+config :binbase_backend, BinbaseBackend.Auth.Guardian,
+  issuer: "binbase_backend",
+  secret_key: "HNinpKh9Ne3tr8BpjCpAEh0xzCqTIG3PWsfkR2AtzvUaRIpbs6oIQ9RcmjmGPekJ"

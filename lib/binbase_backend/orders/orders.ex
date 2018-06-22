@@ -1,11 +1,9 @@
 # lib/api13/orders/orders.ex
 
-defmodule BinbaseBackendWeb.Orders do
+defmodule BinbaseBackend.Orders do
   import Ecto.Query, warn: false
-  alias BinbaseBackendWeb.Repo
 
-  alias BinbaseBackendWeb.Orders
-  alias BinbaseBackendWeb.Orders.Orderbook
+  alias BinbaseBackend.Orders.Orderbook
 
   def get_active_orders(token_rel, token_base, kind, ln \\ 20) do
     case kind do

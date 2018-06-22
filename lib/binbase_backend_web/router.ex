@@ -24,5 +24,6 @@ defmodule BinbaseBackendWeb.Router do
      pipe_through :api
 
      get "/users/:id", UserController, :show
+     post "/register", UserController, :join
    end
 end

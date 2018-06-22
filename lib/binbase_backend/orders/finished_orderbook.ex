@@ -1,5 +1,5 @@
 
-defmodule BinbaseBackendWeb.Orders.FinishedOrderbook do
+defmodule BinbaseBackend.Orders.FinishedOrderbook do
   use Ecto.Schema
   import Ecto.Changeset
 

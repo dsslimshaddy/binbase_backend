@@ -45,6 +45,8 @@ defmodule BinbaseBackend.Mixfile do
       {:comeonin, "~> 4.0"},
       {:argon2_elixir, "~> 1.2"},
       {:guardian, "~> 1.0"},
+      {:hashids, "~> 2.0"},
+      {:ex_machina, "~> 2.2"},
     ]
   end
 

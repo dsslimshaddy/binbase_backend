@@ -1,4 +1,4 @@
-defmodule BinbaseBackendWeb.Accounts.User do
+defmodule BinbaseBackend.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -12,7 +12,7 @@ defmodule BinbaseBackendWeb.Accounts.User do
     timestamps()
   end
 
-  @required_fields ~w(encrypted_password email)
+  @required_fields ~w(email password password_confirmation)
   @optional_fields ~w()
 
   def changeset(user, params \\ :empty) do
