@@ -32,7 +32,7 @@ defmodule BinbaseBackendWeb.Router do
 
   # Other scopes may use custom stacks.
 
-   scope "/api2", BinbaseBackendWeb do
+   scope "/api", BinbaseBackendWeb do
      pipe_through :api_stateless
 
      get "/check_email", UserController, :check
