@@ -3,9 +3,22 @@
 defmodule BinbaseBackend.Auth do
 	import Ecto.Query, warn: false
 
+	alias BinbaseBackend.Errors
 	alias BinbaseBackend.Auth.Guardian
 	alias BinbaseBackend.Accounts.User
 
+	def from_email(email) do
+	  user = 
+	  User
+	  |> where([u], u.email == ^email)
+	  |> BinbaseBackend.Repo.one()
+
+	  if user!= nil do
+	  	{:ok, %{"email" => user.email}}
+	  else
+	  	Errors.returnCode("not_found")
+	  end
+	end
 	def authenticate_user(email, given_password) do
 
 	  User
@@ -15,12 +28,12 @@ defmodule BinbaseBackend.Auth do
 
 	end
 
-	defp check_password(nil, _), do: {:error, "Incorrect email or password"}
+	defp check_password(nil, _), do: Errors.returnCode("not_found")
 
 	defp check_password(user, given_password) do
 	  case Comeonin.Argon2.checkpw(given_password, user.encrypted_password) do
 	    true -> {:ok, user}
-	    false -> {:error, "Incorrect email or password"}
+	    false -> Errors.returnCode("not_found")
 	  end
 	end
 
@@ -39,7 +52,7 @@ defmodule BinbaseBackend.Auth do
 		     	BinbaseBackend.Cache.set_kv(refresh_token, user.id)
 	           {:ok, %{id: user.id,access_token: jwt,refresh_token: refresh_token}}
 	         else
-	         _err -> {:error, "Incorrect email or password"}
+	         _err -> Errors.returnCode("not_found")
 	     end
 	end
 	def refresh_token_create() do

@@ -2,7 +2,7 @@ defmodule BinbaseBackendWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", BinbaseBackendWeb.RoomChannel
+  channel "rooms:*", BinbaseBackendWeb.RoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

@@ -3,6 +3,7 @@ defmodule BinbaseBackend.Orders.Orderbook do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @derive {Poison.Encoder, only: [:maker_id, :token_rel, :token_base, :kind, :amount, :price, :updated_at]}
   schema "orderbook" do
     field(:maker_id, :integer)
     field(:token_rel, :string)

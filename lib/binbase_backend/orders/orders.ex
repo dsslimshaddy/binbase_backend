@@ -1,4 +1,4 @@
-# lib/api13/orders/orders.ex
+# lib/orders/orders.ex
 
 defmodule BinbaseBackend.Orders do
   import Ecto.Query, warn: false
@@ -36,6 +36,8 @@ defmodule BinbaseBackend.Orders do
       price: price,
     }
     BinbaseBackend.Repo.insert(q)
+
+    #Orderbook.order.
   end
 
 end

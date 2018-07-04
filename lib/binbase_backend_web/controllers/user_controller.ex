@@ -1,4 +1,4 @@
-# lib/api13_web/controllers/user_controller.ex
+# lib/controllers/user_controller.ex
 
 defmodule BinbaseBackendWeb.UserController do
   use BinbaseBackendWeb, :controller
@@ -24,5 +24,9 @@ defmodule BinbaseBackendWeb.UserController do
 	  else
 	    json(conn, :not_found)
 	  end
+	end
+	def check(conn, %{"email" => email}) do
+	  {_, data} = Auth.from_email(email)
+	  json(conn, data)
 	end
 end

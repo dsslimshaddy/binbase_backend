@@ -38,7 +38,9 @@ defmodule BinbaseBackendWeb.Endpoint do
     key: "_binbase_backend_key",
     signing_salt: "tjsEwYVq"
 
+  plug CORSPlug, origin: ["http://localhost:3001"]
   plug BinbaseBackendWeb.Router
+
 
   @doc """
   Callback invoked for dynamically configuring the endpoint.
