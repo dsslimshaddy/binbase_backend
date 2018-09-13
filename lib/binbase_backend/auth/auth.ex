@@ -37,15 +37,15 @@ defmodule BinbaseBackend.Auth do
 	  end
 	end
 
-	def join(email, password) do
-		with {:ok, user} <- BinbaseBackend.Repo.insert(User.changeset(%User{},%{email: email, password: password, password_confirmation: password})),
+	def join(email, password, invite_code) do
+		with {:ok, user} <- BinbaseBackend.Repo.insert(User.changeset(%User{},%{email: email, password: password, password_confirmation: password, invite_code: invite_code})),
 		     { :ok, jwt, _ } <- Guardian.encode_and_sign(%{id: user.id}, %{}, token_type: :access) do
 		     	refresh_token = refresh_token_create()
 		     	BinbaseBackend.Cache.set_kv(refresh_token, user.id)
 		        {:ok, %{id: user.id, email: user.email, access_token: jwt,refresh_token: refresh_token}}
 		end
 	end	
-	def login(email, password) do
+	def login(email, password, g_auth) do
 	    with { :ok, user } <- authenticate_user(email, password),
 	         { :ok, jwt, _ } <- Guardian.encode_and_sign(%{id: user.id}, %{}, token_type: :access) do
 		     	refresh_token = refresh_token_create()

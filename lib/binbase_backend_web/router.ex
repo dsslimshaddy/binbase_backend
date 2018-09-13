@@ -33,16 +33,18 @@ defmodule BinbaseBackendWeb.Router do
   # Other scopes may use custom stacks.
 
    scope "/api", BinbaseBackendWeb do
-     pipe_through :api_stateless
+     pipe_through :api_stateless #we dont need authentication here
 
      get "/check_email", UserController, :check
+
+     post "/register", UserController, :join
+     post "/sign_in", UserController, :login     
    end
      
    scope "/api", BinbaseBackendWeb do
      pipe_through :api
 
-     get "/users/:id", UserController, :show
-     post "/register", UserController, :join
+     #get "/users/:id", UserController, :show
      
      post "/add", OrdersController, :join
    end
