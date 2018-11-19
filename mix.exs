@@ -48,7 +48,7 @@ defmodule BinbaseBackend.Mixfile do
       {:hashids, "~> 2.0"},
       {:ex_machina, "~> 2.2"},
       {:poison, "~> 3.1"},
-      {:cors_plug, "~> 1.5"},
+      {:cors_plug, "~> 2.0"},
     ]
   end
 
